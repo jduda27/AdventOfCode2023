@@ -1,6 +1,10 @@
 package main
 
 func main() {
-	executeChallenge(1)
+
+	testMode := true
+
+	executeChallenge(1, testMode)
+	executeChallenge(1, false)
 
 }

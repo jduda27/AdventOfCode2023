@@ -17,7 +17,7 @@ func parseInputFileToString(filePath string) []string {
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
-
+			log.Fatal(err)
 		}
 	}(file)
 
@@ -42,7 +42,7 @@ func parseInputFileToInt(filePath string) []int {
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
-
+			log.Fatal(err)
 		}
 	}(file)
 
@@ -68,17 +68,23 @@ func parseInputFileToInt(filePath string) []int {
 func printAnswer(dayNum int, answerType1 string, answer1 string, answerType2 string, answer2 string) {
 	fmt.Printf("Advent of Code Day %d\n---------------------\n", dayNum)
 	if answerType1 != "" && answer1 != "" {
-		fmt.Printf("%s: %s", answerType1, answer1)
+		fmt.Printf("%s: %s\n", answerType1, answer1)
 	}
 	if answerType2 != "" && answer2 != "" {
 		fmt.Printf("\n%s: %s", answerType2, answer2)
 	}
 }
 
-func executeChallenge(challengeNum int) {
+func executeChallenge(challengeNum int, isTest bool) {
+	testPath := "Media/txt/test-inputs/"
+	path := "Media/txt/"
 	switch challengeNum {
 	case 1:
-		day1("Media/txt/day1.txt")
+		if isTest {
+			day1(testPath + "day1.txt")
+		} else {
+			day1(path + "day" + strconv.Itoa(challengeNum) + ".txt")
+		}
 	case 2:
 		//Put code for execution here
 		fmt.Println("Challenge 2")
