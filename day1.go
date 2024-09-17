@@ -6,13 +6,16 @@ import (
 
 func day1(inputFile string) {
 	output := parseInputFileToString(inputFile)
-	//TODO: @Josh - Implement the code to manipulate the input data to get the desired answer below
 	var sum int
 	for _, line := range output {
 		result := make([]string, 0, 2)
 		for _, character := range line {
-			if character >= 30 && character <= 57 {
+			switch {
+			case character >= 48 && character <= 57:
 				result = append(result, string(character))
+				break
+			case character == 111 || character == 79:
+				result = append(result, "1")
 			}
 			// Add numeric characters to int from left to right
 		}
